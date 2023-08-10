@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: cmserver   #starter的服务名称
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8088/eureka/

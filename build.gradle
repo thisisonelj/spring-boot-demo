@@ -1,0 +1,94 @@
+buildscript {
+    ext {
+        springBootVersion = '2.3.5.RELEASE'
+        springCloudVersion = 'Hoxton.SR9'
+        springAlibabaVersion='2.2.5.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            allowInsecureProtocol = true
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "https://oss.sonatype.org/content/groups/public/"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "https://repo.spring.io/libs-milestone/"
+        }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.4.RELEASE")
+        //classpath "se.transmode.gradle:gradle-docker:${transmodeGradleDockerVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE"
+    }
+
+}
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'org.springframework.boot'
+//    apply plugin: 'org.junit.platform.gradle.plugin'
+    apply from: '../common.gradle'
+    jar.enabled=true
+    bootJar.enabled = false
+
+    dependencyManagement {
+        imports { mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}" }
+        imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" }
+        imports { mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springAlibabaVersion}"}
+    }
+
+    dependencies {
+        api 'org.slf4j:slf4j-api'
+        annotationProcessor("org.projectlombok:lombok")
+        testAnnotationProcessor("org.projectlombok:lombok")
+//        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-autoconfigure'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        runtimeOnly "com.dameng:Dm8JdbcDriver18"
+        // 单元测试
+//        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+//        testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+//        testImplementation 'org.junit.platform:junit-platform-launcher'
+//        testImplementation 'org.junit.platform:junit-platform-runner'
+//        testImplementation 'org.junit.vintage:junit-vintage-engine'
+//        testImplementation 'org.mockito:mockito-core'
+//        testImplementation 'org.mockito:mockito-junit-jupiter'
+
+    }
+
+    wrapper {
+        gradleVersion = '6.5'
+        distributionType = Wrapper.DistributionType.ALL
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+    // 解决javadoc打包乱码
+    javadoc {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            author true
+            version true
+            title "标题"
+        }
+    }
+
+}

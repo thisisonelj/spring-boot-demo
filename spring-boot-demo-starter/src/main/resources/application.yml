@@ -1,0 +1,47 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: starterserver   #starter的服务名称
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+    gateway:
+      routes:
+          - id: power-server
+            uri: lb://powerserver  # 路由到 powerserver 后端项目, powerserver为注册到nacos的名字
+            predicates:
+              - Path=/rest/** # 如果请求路径是以rest开头的任意路径，则通过 nacos 路由到 powerserver后端服务
+            filters:
+      globalcors: # 全局的跨域处理
+        add-to-simple-url-handler-mapping: true # 解决options请求被拦截问题
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: # 允许哪些网站的跨域请求
+              - "*"
+            allowedMethods: # 允许的跨域ajax的请求方式
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*" # 允许在请求中携带的头信息
+            allowCredentials: true # 是否允许携带cookie
+            maxAge: 360000 # 这次跨域检测的有效期
+
+
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8088/eureka/
+feign:
+  client:
+    default-config:
+       loggerLevel:Full
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+
+

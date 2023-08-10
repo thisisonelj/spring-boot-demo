@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+task prepareKotlinBuildScriptModel {
+
+}
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+//    api 'org.springframework.boot:spring-boot-starter-batch'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //webservice
+    implementation 'org.apache.axis:axis'
+    implementation 'javax.xml:jaxrpc-api'
+    implementation 'commons-logging:commons-logging'
+    implementation 'commons-discovery:commons-discovery'
+    implementation 'javax.xml.soap:javax.xml.soap-api'
+    implementation 'wsdl4j:wsdl4j'
+    implementation 'javax.activation:activation'
+    implementation 'com.sun.mail:javax.mail'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'io.github.openfeign:feign-httpclient'
+    implementation project(":spring-boot-demo-cm")
+//    implementation project(":spring-boot-demo-power")
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+    implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+
+}

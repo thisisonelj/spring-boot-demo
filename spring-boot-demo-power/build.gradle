@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+task prepareKotlinBuildScriptModel {
+
+}
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+//    api 'org.springframework.boot:spring-boot-starter-batch'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //webservice
+    implementation 'org.apache.axis:axis'
+    implementation 'javax.xml:jaxrpc-api'
+    implementation 'commons-logging:commons-logging'
+    implementation 'commons-discovery:commons-discovery'
+    implementation 'javax.xml.soap:javax.xml.soap-api'
+    implementation 'wsdl4j:wsdl4j'
+    implementation 'javax.activation:activation'
+    implementation 'com.sun.mail:javax.mail'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.projectlombok:lombok:1.18.18'
+    implementation 'mysql:mysql-connector-java:8.0.15'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
+    implementation 'org.mybatis.generator:mybatis-generator-core:1.4.0'
+//    implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.10'
+    implementation 'com.zaxxer:HikariCP:3.2.0'
+    implementation 'tk.mybatis:mapper:4.1.5'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+    implementation 'ch.qos.logback:logback-core:1.2.11'
+    implementation "org.springframework.boot:spring-boot-devtools"
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}

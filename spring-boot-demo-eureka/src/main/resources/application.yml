@@ -1,0 +1,14 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: eurekaserver   #eureka的服务名称
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+#eureka:
+#  client:
+##    register-with-eureka: false
+##    fetch-registry: false
+#    serviceUrl:
+#      defaultZone: http://localhost:${server.port}/eureka/
