@@ -2,6 +2,9 @@ package com.example.spring.boot.demo.power.service;
 
 import com.example.spring.boot.demo.power.entity.AccountUserDO;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public interface AccountUserService {
     /**
      * @Author LiuJun
@@ -18,5 +21,5 @@ public interface AccountUserService {
      * @Param [accountUserDO]
      * @Return java.lang.Boolean
      **/
-    Boolean AccountUserLogin(AccountUserDO accountUserDO);
+    Boolean AccountUserLogin(AccountUserDO accountUserDO, HttpServletResponse response,HttpServletRequest request);
 }

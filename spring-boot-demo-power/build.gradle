@@ -33,4 +33,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-devtools"
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'redis.clients:jedis:3.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.apache.commons:commons-pool2'
 }

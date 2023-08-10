@@ -6,6 +6,9 @@ import com.example.spring.boot.demo.power.utils.AcctResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @Author liujun
  * @Date 2023/8/9 10:09
@@ -19,8 +22,8 @@ public class AccountUserController {
     private AccountUserService accountUserService;
 
     @PostMapping(value = "login")
-    AcctResult<Object> accountUserLogin(@RequestBody AccountUserDO accountUserDO) {
-        return AcctResult.resultSuccessful(accountUserService.AccountUserLogin(accountUserDO));
+    AcctResult<Object> accountUserLogin(@RequestBody AccountUserDO accountUserDO, HttpServletResponse response,HttpServletRequest request) {
+        return AcctResult.resultSuccessful(accountUserService.AccountUserLogin(accountUserDO,response,request));
     }
 
 }
